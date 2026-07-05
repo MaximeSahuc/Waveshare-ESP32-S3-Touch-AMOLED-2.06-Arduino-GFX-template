@@ -1,0 +1,9 @@
+# clangd config for this PlatformIO / ESP32-S3 (Xtensa) project.
+# The Xtensa GCC build flags in compile_commands.json include GCC-only options
+# that clang's frontend rejects (e.g. -mlongcalls), which otherwise breaks
+# parsing for every file. Strip them so clangd can index the code.
+CompileFlags:
+  Remove:
+    - -m* # -mlongcalls, -mlong-calls (Xtensa/RISC-V only)
+    - -fno-tree-switch-conversion # GCC-only
+    - -fstrict-volatile-bitfields # GCC-only

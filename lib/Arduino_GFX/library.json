@@ -1,0 +1,10 @@
+{
+  "name": "Arduino_GFX",
+  "version": "1.6.0",
+  "description": "Local copy of Arduino_GFX (GFX Library for Arduino) v1.6.0. Changes vs. upstream: (1) the srcFilter below drops unused databus drivers that don't compile against the installed platform's newer arduino-esp32/IDF: Arduino_ESP32RGBPanel.cpp references an ESP-IDF internal struct (esp_rgb_panel_t) no longer exposed, and Arduino_ESP32SPI.cpp / Arduino_ESP32SPIDMA.cpp call the old 1-arg spiFrequencyToClockDiv() (the core now requires spiFrequencyToClockDiv(spi_t*, freq)). The watch drives its CO5300 AMOLED over the QSPI databus (Arduino_ESP32QSPI), so none of these are used; (2) canvas/Arduino_Canvas.cpp begin() patched to allocate its framebuffer in PSRAM (heap_caps_aligned_alloc + MALLOC_CAP_SPIRAM) when present, since a full-screen 410x502 frame (~402 KB) does not fit internal RAM.",
+  "frameworks": "arduino",
+  "platforms": "espressif32",
+  "build": {
+    "srcFilter": "+<*> -<databus/Arduino_ESP32RGBPanel.cpp> -<databus/Arduino_ESP32SPI.cpp> -<databus/Arduino_ESP32SPIDMA.cpp>"
+  }
+}
