@@ -13,7 +13,7 @@ Example project displaying graphics on the Watch using the Arduino GFX Library.
 ### 1. Generate clangd compilation database
 
 ```bash
-pio run -t compiledb
+platformio run -t compiledb
 ```
 
 ---
@@ -22,5 +22,5 @@ pio run -t compiledb
 
 ### Compile code, flash and open serial monitor
 ```bash
-pio run -t upload && pio run -t monitor
+platformio run -t upload && platformio run -t monitor
 ```
